@@ -95,8 +95,6 @@ class Space : public QGraphicsItem
         }
 };
 
-
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -108,7 +106,6 @@ int main(int argc, char *argv[])
     auto space = new Space;
     s->addItem(space);
 
-
     //space->functions.push_back([] (double x, double y)
     //{ return getRandDouble() * x + getRandDouble() * y < getRandDouble() * x; } );
 
@@ -116,7 +113,7 @@ int main(int argc, char *argv[])
     //{ return getRandDouble() * x + getRandDouble() * y < getRandDouble() * x; } );
 
     space->functions.push_back([] (double x, double y)
-    { return y >= 2*x + 50; } );
+    { return y >= 2*x + 80; } );
 
     QPolygonF poly{{{100, 100}, {250, 100}, {750, 500}, {400, 700}}};
     space->functions.push_back([=] (double x, double y)
@@ -125,19 +122,16 @@ int main(int argc, char *argv[])
     } );
 
     space->functions.push_back([] (double x, double y)
-    { return pow(x - 300, 2) + pow(y - 300, 2) <= pow(200, 2); } );
+    { return pow(x - 15, 2) + pow(y - 300, 2) <= pow(200, 2); } );
     space->functions.push_back([] (double x, double y)
     { return pow(x - 300, 2) + pow(y - 300, 2) <= pow(50, 2); } );
-
 
     v->setMinimumSize(w, h);
     v->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     //v->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-
     win.setCentralWidget(v);
     win.show();
-
 
     return a.exec();
 }
